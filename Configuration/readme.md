@@ -251,3 +251,7 @@ end
 ```
 
 ## Verify the VPN Connectivity
+
+We can verify the VPN connectivty state through the Azure Connection.
+
+<div align=left><img width = '400' src =".image/2021-01-30-17-12-54.png"/></div>
