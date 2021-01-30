@@ -240,4 +240,14 @@ configure firewall policy
 end
 ```
 
+### Configure static route for remote BGP peer IP
+```sh
+config router static
+    edit 10
+        set dst 169.254.21.1 255.255.255.255
+        set device "toAzure"
+    next
+end
+```
+
 ## Verify the VPN Connectivity
