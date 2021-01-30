@@ -42,10 +42,8 @@ Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-
 
 1. Azure Local Network Gateway<div align=left><img width = '180' src =".image/2021-01-30-15-56-44.png"/></div>
 
- 2. Azure Connection
-<div align=left><img width = '180' src =".image/2021-01-30-16-03-46.png"/></div>
+ 2. Azure Connection<div align=left><img width = '180' src =".image/2021-01-30-16-03-46.png"/></div>
 
-3. Azure Virtual Network Gateway
-<div align=left><img width = '180' src =".image/2021-01-30-16-04-12.png"/></div>
+3. Azure Virtual Network Gateway<div align=left><img width = '180' src =".image/2021-01-30-16-04-12.png"/></div>
 
 ## Configure Fortigate Fortinet Firewall
