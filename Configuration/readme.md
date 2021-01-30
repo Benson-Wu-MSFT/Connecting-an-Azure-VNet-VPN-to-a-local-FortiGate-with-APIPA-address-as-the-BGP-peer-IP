@@ -43,7 +43,7 @@ Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-
 Azure Local Network Gateway
 ![Azure Local Network Gateway](.image/2021-01-30-15-56-44.png)
 
-<div align=center><img width = '150' height ='150' src =".image/2021-01-30-15-56-44.png"/></div>
+<div align=left><img width = '300' src =".image/2021-01-30-15-56-44.png"/></div>
 
  Azure Connection
 ![Azure Connection](.image/2021-01-30-16-03-46.png)
