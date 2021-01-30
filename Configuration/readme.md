@@ -41,12 +41,12 @@ To configure the Azure VPN Gateway/Virtual Network Gateway, you need to configur
 Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) if you are not familar with Azure VPN Gateway Creation. Right now, I am going to provide some examples.
 
 Azure Local Network Gateway
-<div align=left><img width = '200' src =".image/2021-01-30-15-56-44.png"/></div>
+<div align=left><img width = '180' src =".image/2021-01-30-15-56-44.png"/></div>
 
  Azure Connection
-<div align=left><img width = '200' src =".image/2021-01-30-16-03-46.png"/></div>
+<div align=left><img width = '180' src =".image/2021-01-30-16-03-46.png"/></div>
 
 Azure Virtual Network Gateway
-<div align=left><img width = '200' src =".image/2021-01-30-16-04-12.png"/></div>
+<div align=left><img width = '180' src =".image/2021-01-30-16-04-12.png"/></div>
 
 ## Configure Fortigate Fortinet Firewall
