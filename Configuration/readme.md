@@ -260,3 +260,5 @@ We can verify the VPN connectivty state through the Azure Connection portal. The
 
 We can check NIC effectvie routes on the backend VMs to verify the remote Subnet is being advertised from the BGP.
 <div align=left><img width = '400' src =".image/2021-01-30-17-22-30.png"/></div>
+
+Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-cannot-connect) if you need to troubleshoot the Azure site-to-site VPN Connection.
