@@ -41,7 +41,7 @@ To configure the Azure VPN Gateway/Virtual Network Gateway, you need to configur
 
 >**Note:** Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) if you are not familar with Azure VPN Gateway Creation. 
 
-
+<BR>
 Here, I am going to provide my examples.
 
 1. Azure Local Network Gateway<div align=left><img width = '180' src =".image/2021-01-30-15-56-44.png"/></div>
