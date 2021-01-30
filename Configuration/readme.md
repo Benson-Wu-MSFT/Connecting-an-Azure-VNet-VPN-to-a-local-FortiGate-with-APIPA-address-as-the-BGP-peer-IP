@@ -277,8 +277,8 @@ FGT# diagnose vpn ike gateway list
         interface: ppp1 48
         addr: 114.32.133.120:500 -> 13.94.60.213:500
         created: 4631s ago
-        IKE SA: created 1/2  <mark>established</mark> 1/1  time 30/30/30 ms
-        IPsec SA: created 1/2  <mark>established</mark> 1/1  time 0/0/0 ms
+        IKE SA: created 1/2  <span style="background-color: #FFFF00">established</span> 1/1  time 30/30/30 ms
+        IPsec SA: created 1/2  <span style="background-color: #FFFF00">established</span> 1/1  time 0/0/0 ms
         
         id/spi: 1417126 e7a201920b0e52f8/12a8a275ec0e16a1
         direction: responder
