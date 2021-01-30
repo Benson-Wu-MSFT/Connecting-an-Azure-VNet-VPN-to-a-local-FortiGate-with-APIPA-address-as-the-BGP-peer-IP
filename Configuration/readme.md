@@ -32,7 +32,7 @@ A VPN gateway is a specific type of virtual network gateway that is used to send
 
 >**Note:** Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways) to check more information about the Azure VPN Gateway/Virtual Network Gateway including Design, SKUs, AZs and Pricing.
 
-<space>
+<BR>
 To configure the Azure VPN Gateway/Virtual Network Gateway, you need to configure the following components:
 
   - Azure Local Network Gateway
