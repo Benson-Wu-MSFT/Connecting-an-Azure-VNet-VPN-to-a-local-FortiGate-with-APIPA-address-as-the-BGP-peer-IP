@@ -5,7 +5,7 @@
 
 The main goal of this article is to help people who is going to configure VPN between Azure VPN Gateway and On-Prem Fortigate Firewall and enable the BGP routing protocol with APIPA address as the BGP peer IP.
 
-**Note:** This guide assumes you have basic understanding of Azure VPN and Fortigate hands on experience.
+>**Note:** This guide assumes you have basic understanding of Azure VPN and Fortigate hands on experience.
 
 ## Topology
 
@@ -30,7 +30,7 @@ We create a VM to demostrate as a VPN endpoint in Azure.
 
 A VPN gateway is a specific type of virtual network gateway that is used to send encrypted traffic between an Azure virtual network and an on-premises location over the public Internet. You can also use a VPN gateway to send encrypted traffic between Azure virtual networks over the Microsoft network. Each virtual network can have only one VPN gateway. However, you can create multiple connections to the same VPN gateway. When you create multiple connections to the same VPN gateway, all VPN tunnels share the available gateway bandwidth.
 
-**Note:** Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways) to check more information about the Azure VPN Gateway/Virtual Network Gateway including Design, SKUs, AZs and Pricing.
+>**Note:** Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways) to check more information about the Azure VPN Gateway/Virtual Network Gateway including Design, SKUs, AZs and Pricing.
 
 To configure the Azure VPN Gateway/Virtual Network Gateway, you need to configure the following components:
 
