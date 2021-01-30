@@ -9,6 +9,8 @@ The main goal of this article is to help people who is going to configure VPN be
 
 ## Topology
 
+The following demonstrates the topology for this configuration:
+
 ![](.image/2021-01-30-14-28-57.png)
 
 ## Configure Azure Virtual Network Gateway
