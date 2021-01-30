@@ -42,8 +42,10 @@ Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-
 
     1. Azure Local Network Gateway
     ![](.image/2021-01-30-15-56-44.png)
+
     2. Azure Connection
     ![](.image/2021-01-30-16-03-46.png)
+    
     3. Azure Virtual Network Gateway
     ![](.image/2021-01-30-16-04-12.png)
 
