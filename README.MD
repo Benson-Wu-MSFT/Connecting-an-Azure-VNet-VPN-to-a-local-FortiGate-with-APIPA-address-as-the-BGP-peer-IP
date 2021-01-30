@@ -5,6 +5,5 @@
 ## Other useful resources (outside of this Github repo):
 - [About Azure VPN Gateways](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways)
 - [Tutorial: Create a Site-to-Site connection in the Azure portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal)
-- 3
-- 4
-- 5
+- [Azure - Configure your S2S VPN Device](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal#VPNDevice)
+- [Fortigate Configuration guide](https://docs.fortinet.com/document/fortigate/6.2.0/azure-cookbook/989216/connecting-a-local-fortigate-to-an-azure-vnet-vpn)
