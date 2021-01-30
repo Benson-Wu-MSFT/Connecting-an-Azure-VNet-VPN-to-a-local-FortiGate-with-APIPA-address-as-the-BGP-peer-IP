@@ -1,6 +1,6 @@
 # Resources
 Content and Labs related to Azure VPN Configuration
-- 1
+- [About Azure VPN Gateways](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways)
 - 2
 - 3
 - 4
