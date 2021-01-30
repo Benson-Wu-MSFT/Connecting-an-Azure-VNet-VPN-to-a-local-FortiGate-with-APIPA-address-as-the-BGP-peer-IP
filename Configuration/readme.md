@@ -261,9 +261,9 @@ We can verify the VPN connectivty state through the Azure Connection portal. The
 We can check NIC effectvie routes on the backend VMs to verify the remote Subnet is being advertised from the BGP.
 <div align=left><img width = '400' src =".image/2021-01-30-17-22-30.png"/></div>
 
-Check more Azure Monitoring and Alerts for VPN Gateway on [here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-view-virtual-network-gateway-metrics)
+>**Note:** Check more Azure Monitoring and Alerts for VPN Gateway on [here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-view-virtual-network-gateway-metrics)
 
-Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-cannot-connect) if you need to troubleshoot the Azure site-to-site VPN Connection.
+>**Note:** Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-cannot-connect) if you need to troubleshoot the Azure site-to-site VPN Connection.
 
 ### Verify the VPN Connectivity from the Fortigate
 
@@ -309,4 +309,28 @@ FGT# get router info bgp summary
         Total number of neighbors 1
 ```
 
-#### Check BGP Routing
+#### Check routing table BGP
+```sh
+FGT# get router info routing-table bgp
+ 
+        Routing table for VRF=0
+        B       192.168.12.0/24 [20/0] via 169.254.21.1 (recursive is directly connected, toAzure), 01:09:57
+```
+
+#### Example of debug IPSec VPN Tunnel
+```sh
+FGT# diagnose debug enable
+FGT# diagnose debug application ike -1
+    Debug messages will be on for 30 minutes.
+FGT# ike 0: cache rebuild start
+    ike 0:toAzure: cached as static-ddns
+    ike 0: cache rebuild done
+    ike shrank heap by 106496 bytes
+    ike 0:toAzure: NAT keep-alive 3 10.0.0.15->94.245.93.197:4500.
+    ike 0:toAzure:125: out FF
+    ike 0:toAzure:125: sent IKE msg (keepalive): 10.0.0.15:4500->94.245.93.197:4500, len=1, id=ff00000000000000/0000000000000000
+    ike 0:toAzure:azurephase2: IPsec SA connect 3 10.0.0.15->94.245.93.197:4500
+    ike 0:toAzure:azurephase2: using existing connection
+    ike 0:toAzure:azurephase2: config found
+    ike 0:toAzure:azurephase2: IPsec SA connect 3 10.0.0.15->94.245.93.197:4500 negotiating
+```
