@@ -294,3 +294,19 @@ FGT# diagnose vpn ike gateway list
         lifetime/rekey: 28800/23917
         DPD sent/recv: 0007ac00/0007ac00
 ```
+
+#### Check BGP peer state
+```sh
+FGT# get router info bgp summary 
+        BGP router identifier 172.20.0.1, local AS number 65000
+        BGP table version is 10
+        2 BGP AS-PATH entries
+        0 BGP community entries
+        
+        Neighbor        V         AS MsgRcvd MsgSent   TblVer  InQ OutQ Up/Down  State/PfxRcd
+        169.254.21.1    4      65001    1787    1798        9    0    0 01:09:43        1     
+        
+        Total number of neighbors 1
+```
+
+#### Check BGP Routing
