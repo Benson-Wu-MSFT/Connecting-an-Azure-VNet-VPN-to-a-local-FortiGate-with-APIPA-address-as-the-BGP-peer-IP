@@ -252,6 +252,11 @@ end
 
 ## Verify the VPN Connectivity
 
-We can verify the VPN connectivty state through the Azure Connection.
+### Verify the VPN connectivity from the Azure
 
-<div align=left><img width = '400' src =".image/2021-01-30-17-12-54.png"/></div>
+We can verify the VPN connectivty state through the Azure Connection portal. The example in below shows the Status = Connected.
+
+<div align=left><img width = '600' src =".image/2021-01-30-17-12-54.png"/></div>
+
+We can check NIC effectvie routes on the backend VMs to verify the remote Subnet is being advertised from the BGP.
+<div align=left><img width = '400' src =".image/2021-01-30-17-22-30.png"/></div>
