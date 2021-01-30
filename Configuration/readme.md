@@ -264,3 +264,33 @@ We can check NIC effectvie routes on the backend VMs to verify the remote Subnet
 Check more Azure Monitoring and Alerts for VPN Gateway on [here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-view-virtual-network-gateway-metrics)
 
 Click [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-troubleshoot-site-to-site-cannot-connect) if you need to troubleshoot the Azure site-to-site VPN Connection.
+
+### Verify the VPN Connectivity from the Fortigate
+
+#### Check IPSec VPN phase1 and 2 Status
+```sh
+FGT# diagnose vpn ike gateway list 
+ 
+        vd: root/0
+        name: toAzure
+        version: 2
+        interface: ppp1 48
+        addr: 114.32.133.120:500 -> 13.94.60.213:500
+        created: 4631s ago
+        IKE SA: created 1/2  established 1/1  time 30/30/30 ms
+        IPsec SA: created 1/2  established 1/1  time 0/0/0 ms
+        
+        id/spi: 1417126 e7a201920b0e52f8/12a8a275ec0e16a1
+        direction: responder
+        status: established 4613-4612s ago = 30ms
+        proposal: aes128-sha256
+        child: no
+        SK_ei: 07d9d8498ee329d1-98a6a5e2932449e4
+        SK_er: 583f5e75bd1b05fb-43314aa4e60f5664
+        SK_ai: 971118f7ec233a68-e1499e143ad05708-add96d94a297bb17-accc33dd4d62f603
+        SK_ar: 319c46fbda39171b-6e5f4a339634d175-1cc2e0ca6e674084-9322e2860ef88c1f
+        PPK: no
+        message-id sent/recv: 31/61
+        lifetime/rekey: 28800/23917
+        DPD sent/recv: 0007ac00/0007ac00
+```
