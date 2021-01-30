@@ -38,7 +38,7 @@ To configure the Azure VPN Gateway/Virtual Network Gateway, you need to configur
   - Azure Connections
   - Azure Virtual Network Gateway
 
-Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) if you are not familar with Azure VPN Gateway Creation. Right now, I am going to provide some examples.
+Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal) if you are not familar with Azure VPN Gateway Creation. Right now, I am going to provide my examples.
 
 1. Azure Local Network Gateway<div align=left><img width = '180' src =".image/2021-01-30-15-56-44.png"/></div>
 
@@ -47,3 +47,197 @@ Please check [Here](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-
 3. Azure Virtual Network Gateway<div align=left><img width = '180' src =".image/2021-01-30-16-04-12.png"/></div>
 
 ## Configure Fortigate Fortinet Firewall
+
+On the on-premise FortiGate, you must configure the phase-1 and phase-2 interfaces, firewall policy, and routing to complete the VPN connection. For Azure requirements for various VPN parameters, see [Configure your VPN device](https://docs.microsoft.com/en-us/azure/vpn-gateway/tutorial-site-to-site-portal#VPNDevice).
+
+### Configure Fortigate Interface
+```sh
+config system interface
+    edit "external"
+        set vdom "root"
+        set ip 114.32.133.120 255.255.255.0
+        set allowaccess ping https ssh
+        set type physical
+        set role wan
+        set snmp-index 2
+    next
+    edit "internal"
+        set vdom "root"
+        set ip 172.20.1.254 255.255.255.0
+        set allowaccess ping https ssh http
+        set type hard-switch
+        set stp enable
+        set role lan
+        set snmp-index 6
+    next
+   edit "loopback0"
+        set vdom "root"
+        set ip 169.254.21.2 255.255.255.255
+        set allowaccess ping
+        set type loopback
+        set role lan
+        set snmp-index 14
+     next
+end
+```
+
+### Configure Internet Default Route
+```sh
+config router static
+    edit 1
+        set dst 0.0.0.0 0.0.0.0
+        set gateway 114.32.133.254
+    next
+end
+```
+
+### Configure VPN IPSec Phase1-Interface
+```sh
+config vpn ipsec phase1-interface
+    edit "toAzure"
+        set interface "external"
+        set ike-version 2
+        set keylife 28800
+        set peertype any
+        set proposal aes128-sha256 aes256-sha256 aes128gcm-prfsha256 aes256gcm-prfsha384 chacha20poly1305-prfsha256
+        set dpd on-idle
+        set dhgrp 2
+        set nattraversal disable
+        set remote-gw 13.94.60.213
+        set psksecret ENC xxxxxxxxxxxxxx
+    next
+end
+```
+
+### Configure VPN IPSec Phase2-Interface
+```sh
+config vpn ipsec phase2-interface
+    edit "toAzure"
+        set phase1name "toAzure"
+        set proposal aes256-sha1 3des-sha1 aes256-sha512
+        set pfs disable
+        set replay disable
+        set keylifeseconds 27000
+    next
+end
+```
+
+### Configure Firewall Policy for VPN Connectivity
+```sh
+    edit 21
+        set name "toAzure"
+        set uuid eb26822e-5128-51ea-0559-bbf1b14cf8e5
+        set srcintf "internal"
+        set dstintf "toAzure"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set fsso disable
+        set tcp-mss-sender 1350
+        set tcp-mss-receiver 1350
+    next
+    edit 22
+        set name "fromAzure"
+        set uuid 1964d8f2-5129-51ea-82e8-17a7dca4fbe4
+        set srcintf "toAzure"
+        set dstintf "internal"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set fsso disable
+        set tcp-mss-sender 1350
+        set tcp-mss-receiver 1350
+    next
+end
+```
+
+### Configure BGP
+```sh
+config router bgp
+    set as 65000
+    set router-id 172.20.0.1
+    set ebgp-multipath enable
+    config neighbor
+        edit "169.254.21.1"
+            set ebgp-enforce-multihop enable
+            set soft-reconfiguration enable
+            set remote-as 65001
+            set update-source "loopback0"
+        next
+    end
+    config network
+        edit 1
+            set prefix 172.20.1.0 255.255.255.0
+        next
+        edit 2
+            set prefix 172.20.2.0 255.255.255.0
+        next
+        edit 3
+            set prefix 172.20.0.0 255.255.255.0
+        next
+    end
+        config redistribute "connected"
+        set status enable
+    end
+    config redistribute "rip"
+    end
+    config redistribute "ospf"
+    end
+    config redistribute "static"
+        set status enable
+        set route-map "allow_default_only"
+    end
+    config redistribute "isis"
+    end
+    config redistribute6 "connected"
+    end
+    config redistribute6 "rip"
+    end
+    config redistribute6 "ospf"
+    end
+    config redistribute6 "static"
+    end
+    config redistribute6 "isis"
+    end
+end
+```
+
+### Configure firewall policy for BGP connectivity
+```sh
+configure firewall policy
+    edit 32
+        set name "bgpAzure"
+        set uuid 9816f7b2-24bd-51eb-9da8-675fded386ee
+        set srcintf "toAzure"
+        set dstintf "loopback0"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set fsso disable
+    next
+    edit 24
+        set name "bgpoutAzure"
+        set uuid 74d2f770-5195-51ea-e6f0-ede94f58bed4
+        set srcintf "loopback0"
+        set dstintf "toAzure"
+        set srcaddr "all"
+        set dstaddr "all"
+        set action accept
+        set schedule "always"
+        set service "ALL"
+        set logtraffic all
+        set fsso disable
+    next
+end
+```
+
+## Verify the VPN Connectivity
